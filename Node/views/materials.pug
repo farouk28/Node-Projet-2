@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1 Gestion des matériaux
+  table
+    thead
+      tr
+        th Nom
+        th Fournisseur
+        th Actions
+    tbody
+      each material in materials
+        tr
+          td= material.name
+          td= material.supplierId.name
+          td
+            a(href=`/materials/${material.id}/edit`) Éditer
+            a(href=`/materials/${material.id}/delete`) Supprimer

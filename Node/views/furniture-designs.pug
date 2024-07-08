@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1 Gestion des conceptions de meubles
+  table
+    thead
+      tr
+        th Nom
+        th Catégorie
+        th Matériaux
+        th Actions
+    tbody
+      each furnitureDesign in furnitureDesigns
+        tr
+          td= furnitureDesign.name
+          td= furnitureDesign.categoryId.name
+          td
+            ul
+              each material in furnitureDesign.materials
+                li= material.name
+          td
+            a(href=`/furniture-designs/${furnitureDesign.id}/edit`) Éditer
+            a(href=`/furniture-designs/${furnitureDesign.id}/delete`) Supprimer

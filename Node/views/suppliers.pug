@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1 Gestion des fournisseurs
+  table
+    thead
+      tr
+        th Nom
+        th Adresse
+        th Actions
+    tbody
+      each supplier in suppliers
+        tr
+          td= supplier.name
+          td= supplier.address
+          td
+            a(href=`/suppliers/${supplier.id}/edit`) Éditer
+            a(href=`/suppliers/${supplier.id}/delete`) Supprimer

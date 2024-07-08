@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "chart.js": "^4.4.3",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.5",
+    "pug": "^3.0.3"
+  }
+}
