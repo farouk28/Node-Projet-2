@@ -1,32 +1,69 @@
-const Supplier = require('../models/Supplier');
+const { Supplier } = require('../models');
 
 exports.index = async (req, res) => {
-  const suppliers = await Supplier.find();
-  res.render('suppliers', { suppliers });
+  try {
+    const suppliers = await Supplier.find();
+    res.render('suppliers', { suppliers });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error fetching suppliers');
+  }
 };
 
 exports.create = async (req, res) => {
-  const { name, address } = req.body;
-  const supplier = new Supplier({ name, address });
-  await supplier.save();
-  res.redirect('/suppliers');
+  try {
+    const { name, address } = req.body;
+    if (!name ||!address) {
+      throw new Error('Invalid request data');
+    }
+    const supplier = new Supplier({ name, address });
+    await supplier.save();
+    res.redirect('/suppliers');
+  } catch (err) {
+    console.error(err);
+    res.status(400).send('Error creating supplier');
+  }
 };
 
 exports.edit = async (req, res) => {
-  const id = req.params.id;
-  const supplier = await Supplier.findById(id);
-  res.render('suppliers-edit', { supplier });
+  try {
+    const id = req.params.id;
+    const supplier = await Supplier.findById(id);
+    if (!supplier) {
+      throw new Error('Supplier not found');
+    }
+    res.render('suppliers-edit', { supplier });
+  } catch (err) {
+    console.error(err);
+    res.status(404).send('Supplier not found');
+  }
 };
 
 exports.update = async (req, res) => {
-  const id = req.params.id;
-  const { name, address } = req.body;
-  const supplier = await Supplier.findByIdAndUpdate(id, { name, address });
-  res.redirect('/suppliers');
+  try {
+    const id = req.params.id;
+    const { name, address } = req.body;
+    if (!name ||!address) {
+      throw new Error('Invalid request data');
+    }
+    const supplier = await Supplier.findByIdAndUpdate(id, { name, address });
+    if (!supplier) {
+      throw new Error('Supplier not found');
+    }
+    res.redirect('/suppliers');
+  } catch (err) {
+    console.error(err);
+    res.status(400).send('Error updating supplier');
+  }
 };
 
 exports.delete = async (req, res) => {
-  const id = req.params.id;
-  await Supplier.findByIdAndRemove(id);
-  res.redirect('/suppliers');
+  try {
+    const id = req.params.id;
+    await Supplier.findByIdAndRemove(id);
+    res.redirect('/suppliers');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error deleting supplier');
+  }
 };

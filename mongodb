@@ -1,0 +1,58 @@
+// Collection Matériaux
+{
+  _id: ObjectId,
+  nom: String,
+  fournisseurId: ObjectId,
+  fournisseurNom: String,
+  // Index sur fournisseurId
+  index: { fournisseurId: 1 }
+}
+
+// Collection Fournisseurs
+{
+  _id: ObjectId,
+  nom: String
+}
+
+// Collection Conceptions de Meubles
+{
+  _id: ObjectId,
+  nom: String,
+  categorieId: ObjectId,
+  // Index sur categorieId
+  index: { categorieId: 1 }
+}
+
+// Collection Catégories
+{
+  _id: ObjectId,
+  nom: String
+}
+
+// Collection Matériaux de Conception de Meuble
+{
+  _id: ObjectId,
+  conceptionMeubleId: ObjectId,
+  materiauId: ObjectId,
+  quantité: Number,
+  // Index sur conceptionMeubleId et materiauId
+  index: { conceptionMeubleId: 1, materiauId: 1 }
+}
+
+// Collection Mots-clés
+{
+  _id: ObjectId,
+  nom: String,
+  materiauId: ObjectId,
+  // Index sur materiauId
+  index: { materiauId: 1 }
+}
+
+// Collection Mots-clés de Conception de Meuble
+{
+  _id: ObjectId,
+  conceptionMeubleId: ObjectId,
+  motCleId: ObjectId,
+  // Index sur conceptionMeubleId et motCleId
+  index: { conceptionMeubleId: 1, motCleId: 1 }
+}

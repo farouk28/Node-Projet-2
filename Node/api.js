@@ -22,4 +22,4 @@ router.post('/furniture-designs', async (req, res) => {
   res.json(furnitureDesign);
 });
 
-//...
+module.exports = router;

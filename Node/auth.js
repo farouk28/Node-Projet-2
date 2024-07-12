@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 
-// POST /api/login
+// POST /api/auth/login
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
   const user = await User.findOne({ username });
@@ -17,10 +17,10 @@ router.post('/login', async (req, res) => {
   res.json({ message: 'Logged in successfully' });
 });
 
-// GET /api/logout
+// GET /api/auth/logout
 router.get('/logout', (req, res) => {
   req.session.destroy();
   res.json({ message: 'Logged out successfully' });
 });
 
-//...
+module.exports = router;

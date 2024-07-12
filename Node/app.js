@@ -7,6 +7,13 @@ const furnitureDesignsController = require('./controllers/furniture-designs');
 const materialsController = require('./controllers/materials');
 const suppliersController = require('./controllers/suppliers');
 
+app.set('view engine', 'pug');
+app.set('views', './views');
+
+app.use(express.static('public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.get('/suppliers', suppliersController.index);
 app.post('/suppliers', suppliersController.create);
 app.get('/suppliers/:id/edit', suppliersController.edit);
@@ -22,10 +29,7 @@ app.post('/furniture-designs', furnitureDesignsController.create);
 app.get('/furniture-designs/:id/edit', furnitureDesignsController.edit);
 app.put('/furniture-designs/:id', furnitureDesignsController.update);
 app.delete('/furniture-designs/:id', furnitureDesignsController.delete);
-app.set('view engine', 'pug');
-app.set('views', './views');
 
-app.use(express.static('public'));
 app.use('/api', apiRouter);
 app.use('/api/auth', authRouter);
 
