@@ -5,7 +5,7 @@ export default function Suppliers() {
   const [suppliers, setSuppliers] = useState([]);
 
   useEffect(() => {
-    axios.get('https://votre-backend-url.com/suppliers')
+    axios.get('http://localhost:3000/api/suppliers')
       .then(response => {
         setSuppliers(response.data);
       })

@@ -7,7 +7,7 @@ export default function FurnitureDesigns() {
   const [selectedDesign, setSelectedDesign] = useState(null);
 
   useEffect(() => {
-    axios.get('https://votre-backend-url.com/furniture-designs')
+    axios.get('http://localhost:3000/api/furniture-designs')
      .then(response => {
         setFurnitureDesigns(response.data);
       })

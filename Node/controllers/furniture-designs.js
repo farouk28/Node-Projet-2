@@ -1,4 +1,4 @@
-const FurnitureDesign = require('../models/FurnitureDesign');
+const FurnitureDesign = require('/../models/FurnitureDesign');
 
 exports.index = async (req, res) => {
   const furnitureDesigns = await FurnitureDesign.find().populate('categoryId').populate('materials');

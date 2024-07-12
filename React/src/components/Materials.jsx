@@ -7,7 +7,7 @@ export default function Materials() {
   const [selectedMaterial, setSelectedMaterial] = useState(null);
 
   useEffect(() => {
-    axios.get('https://votre-backend-url.com/materials')
+    axios.get('http://localhost:3000/api/materials')
      .then(response => {
         setMaterials(response.data);
       })
